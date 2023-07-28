@@ -21,8 +21,8 @@ Then you can use it like this:
 ```
 
 It handles spacing in the hex and an optional `fl_` prefix as used by Senec systems.
-It does not currently deal with invalid input strings, nor the 
-infinity or `nan` special cases.
+The infinity and `nan` special cases both return None / `null` as Jinja has no sentinel
+value for infinity.
 
 As with all such macros, the return value is a string, and will need casting before
 used in calculations. For example:

@@ -1,4 +1,4 @@
-{% macro ieee754(hex_string) -%}
+{% macro ieee754_float(hex_string) -%}
 {% set h = hex_string.replace("fl_","").replace(" ","")|upper -%}
 {# exit if the input is not hex -#}
 {% if h|select('in','0123456789ABCDEF')|join() != h -%}

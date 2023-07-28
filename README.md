@@ -14,10 +14,10 @@ This is intended for installation as a [reusable template](https://www.home-assi
 Then you can use it like this:
 
 ```
-{% from 'ieee754.jinja' import ieee754 %}
-{{ ieee754("4248") }}
-{{ ieee754("fl_40490fdb") }}
-{{ ieee754("4009 21FB 5444 2D18") }}
+{% from 'ieee754.jinja' import ieee754_float %}
+{{ ieee754_float("4248") }}
+{{ ieee754_float("fl_40490fdb") }}
+{{ ieee754_float("4009 21FB 5444 2D18") }}
 ```
 
 It handles spacing in the hex and an optional `fl_` prefix as used by Senec systems.
@@ -28,6 +28,6 @@ As with all such macros, the return value is a string, and will need casting bef
 used in calculations. For example:
 
 ```
-{% from 'ieee754.jinja' import ieee754 %}
-{{ ieee754("4037 0000 0000 0000")|int + 19 }}
+{% from 'ieee754.jinja' import ieee754_float %}
+{{ ieee754_float("4037 0000 0000 0000")|int + 19 }}
 ```

@@ -4,9 +4,7 @@
 {% if h|select('in','0123456789ABCDEF')|join() != h -%}
 {{ None -}}
 {% else -%}
-{% set stds = { 4:[ 5, 10,   15],
-8:[ 8, 23,  127],
-16:[11, 52, 1023]} -%}
+{% set stds = {4:[5,10,15],8:[8,23,127],16:[11,52,1023]} -%}
 {# exit if the input is the wrong length -#}
 {% if h|length not in stds.keys() -%}
 {{ None -}}

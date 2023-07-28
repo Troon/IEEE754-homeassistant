@@ -7,7 +7,8 @@ and [double](https://en.wikipedia.org/wiki/Double-precision_floating-point_forma
 
 This is intended for installation as a [reusable template](https://www.home-assistant.io/docs/configuration/templating/#reusing-templates):
 
-* Create the folder `/config/custom_templates`, then put this `ieee754.jinja` file in that folder.
+* Create the folder `/config/custom_templates`
+* Download or copy/paste [this `ieee754.jinja` file](https://raw.githubusercontent.com/Troon/IEEE754-homeassistant/main/ieee754.jinja) into that folder.
 * Reload by either restarting HA or calling the `homeassistant.reload_custom_templates` service ([link to do this on your system](https://my.home-assistant.io/redirect/_change/?redirect=developer_call_service%2F%3Fservice%3Dhomeassistant.reload_custom_templates)).
 
 Then you can use it like this:

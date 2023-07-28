@@ -3,18 +3,25 @@
 {% set stds = { 4:[ 5, 10,   15],
                 8:[ 8, 23,  127],
                16:[11, 52, 1023]} -%}
+{# exit if the input is the wrong length or not hex -#}
 {% if h|length not in stds.keys()
    or h|select('in','0123456789ABCDEF')|join() != h -%}
 {{ None -}}
 {% else -%}
-{% set e, m, b = stds[h|length] -%}
+{% set el, ml, b = stds[h|length] -%}
 {% set d = h|int(base=16) -%}
-{% if d|bitwise_and(('0'~'1'*e~'0'*m)|int(base=2))//2**m == 2**e-1 -%}
+{% set s = d|bitwise_and(('1'~'0'*(el+ml))|int(base=2))//2**(el+ml) -%}
+{% set e = d|bitwise_and(('0'~'1'*el~'0'*ml)|int(base=2))//2**ml -%}
+{% set m = d|bitwise_and(('1'*ml)|int(base=2))/2**ml -%}
+{% if e == 2**el-1 -%}
+{# infinity or NaN -#}
 {{ None -}}
+{% elif e == 0 -%}
+{# subnormal -#}
+{{ [1,-1][s]*m*2**-(b-1) -}}
 {% else -%}
-{{ [1,-1][d|bitwise_and(('1'~'0'*(e+m))|int(base=2))//2**(e+m)]
-   *(1+d|bitwise_and(('1'*m)|int(base=2))/2**m)
-   *2**(d|bitwise_and(('0'~'1'*e~'0'*m)|int(base=2))//2**m-b) -}}
+{# normal -#}
+{{ [1,-1][s]*(1+m)*2**(e-b) -}}
 {% endif -%}
 {% endif -%}
 {% endmacro -%}

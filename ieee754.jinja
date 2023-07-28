@@ -1,7 +1,7 @@
 {% macro ieee754(hex_string) -%}
 {% set h = hex_string.replace("fl_","").replace(" ","")|upper -%}
-{% if h|select('in','0123456789ABCDEF')|join() != h -%}
 {# exit if the input is not hex -#}
+{% if h|select('in','0123456789ABCDEF')|join() != h -%}
 {{ None -}}
 {% else -%}
 {% set stds = { 4:[ 5, 10,   15],
@@ -14,17 +14,17 @@
 {% set el, ml, b = stds[h|length] -%}
 {% set d = h|int(base=16) -%}
 {% set e = d|bitwise_and(('0'~'1'*el~'0'*ml)|int(base=2))//2**ml -%}
-{% if e == 2**el-1 -%}
 {# infinity or NaN -#}
+{% if e == 2**el-1 -%}
 {{ None -}}
 {% else -%}
 {% set s = d|bitwise_and(('1'~'0'*(el+ml))|int(base=2))//2**(el+ml) -%}
 {% set m = d|bitwise_and(('1'*ml)|int(base=2))/2**ml -%}
-{% if e == 0 -%}
 {# subnormal -#}
+{% if e == 0 -%}
 {{ [1,-1][s]*m*2**-(b-1) -}}
-{% else -%}
 {# normal -#}
+{% else -%}
 {{ [1,-1][s]*(1+m)*2**(e-b) -}}
 {% endif -%}
 {% endif -%}

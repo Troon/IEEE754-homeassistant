@@ -24,6 +24,8 @@ It handles spacing in the hex and an optional `fl_` prefix as used by Senec syst
 The infinity and `nan` special cases both return None / `null` as Jinja has no sentinel
 value for infinity.
 
+Due to system limitations, very small ("sub-normal") numbers may deviate from expectations.
+
 As with all such macros, the return value is a string, and will need casting before
 used in calculations. For example:
 

@@ -1,6 +1,6 @@
 # IEEE754-homeassistant
 
-Home Assistant Jinja macro for converting IEEE754 hex strings to floating-point decimal that will handle
+Home Assistant Jinja macro for converting [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754) hex strings to floating-point decimal that will handle
 [half](https://en.wikipedia.org/wiki/Half-precision_floating-point_format),
 [single](https://en.wikipedia.org/wiki/Single-precision_floating-point_format),
 and [double](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) precision formats.

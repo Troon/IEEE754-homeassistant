@@ -29,3 +29,11 @@
 {% endif -%}
 {% endif -%}
 {% endmacro -%}
+{% macro float_ieee754_single(value) -%}
+{% set dl = pack(value|float, "!f").decode('latin-1')|map('ord')|list -%}
+{{ ("{:02x}"*dl|length).format(*dl) -}}
+{% endmacro -%}
+{% macro float_ieee754_double(value) -%}
+{% set dl = pack(value|float, "!d").decode('latin-1')|map('ord')|list -%}
+{{ ("{:02x}"*dl|length).format(*dl) -}}
+{% endmacro -%}

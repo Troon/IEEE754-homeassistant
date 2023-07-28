@@ -21,5 +21,13 @@ Then you can use it like this:
 ```
 
 It handles spacing in the hex and an optional `fl_` prefix as used by Senec systems.
-Note that it does not currently deal with invalid input strings, nor the 
+It does not currently deal with invalid input strings, nor the 
 infinity or `nan` special cases.
+
+As with all such macros, the return value is a string, and will need casting before
+used in calculations. For example:
+
+```
+{% from 'ieee754.jinja' import ieee754 %}
+{{ ieee754("4037 0000 0000 0000")|int + 19 }}
+```

@@ -1,0 +1,15 @@
+{% macro ieee754(hex_string) -%}
+{% set h = hex_string.replace("fl_","").replace(" ","") -%}
+{% set stds = { 4:[ 5, 10,   15],
+                8:[ 8, 23,  127],
+               16:[11, 52, 1023]} -%}
+{% if h|length not in stds.keys() -%}
+{{ None -}}
+{% else -%}
+{% set e, m, b = stds[h|length] -%}
+{% set d = h|int(base=16) -%}
+{{ [1,-1][d|bitwise_and(('1'+'0'*(e+m))|int(base=2))//2**(e+m)]
+   *(1+d|bitwise_and(('1'*m)|int(base=2))/2**m)
+   *2**(d|bitwise_and(('0'+'1'*e+'0'*m)|int(base=2))//2**m-b) -}}
+{% endif -%}
+{% endmacro -%}

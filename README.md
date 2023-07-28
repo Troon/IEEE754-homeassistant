@@ -15,16 +15,14 @@ Then you can use it like this:
 
 ```
 {% from 'ieee754.jinja' import ieee754 %}
-{{ ieee754("7bff") }}
-{{ ieee754("fl_43F54001") }}
-{{ ieee754("4037 0000 0000 0000") }}
+{{ ieee754("4248") }}
+{{ ieee754("fl_40490fdb") }}
+{{ ieee754("4009 21FB 5444 2D18") }}
 ```
 
 It handles spacing in the hex and an optional `fl_` prefix as used by Senec systems.
 The infinity and `nan` special cases both return None / `null` as Jinja has no sentinel
 value for infinity.
-
-At the moment, "sub-normal" numbers are not calculated correctly.
 
 As with all such macros, the return value is a string, and will need casting before
 used in calculations. For example:

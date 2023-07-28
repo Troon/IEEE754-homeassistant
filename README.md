@@ -31,3 +31,9 @@ used in calculations. For example:
 {% from 'ieee754.jinja' import ieee754_float %}
 {{ ieee754_float("4037 0000 0000 0000")|int + 19 }}
 ```
+
+Also contains first-draft macros `float_ieee754_single(float)` and `float_ieee754_double(float)` to convert in the other direction:
+```
+{% from 'ieee754.jinja' import float_ieee754_single %}
+{{ float_ieee754_single(-6.259853398707798e+18)
+```
